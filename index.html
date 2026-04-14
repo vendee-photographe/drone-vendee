@@ -279,12 +279,24 @@
       position: absolute;
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      /* couvre toujours l'écran quelle que soit l'orientation */
       width: 100vw;
-      height: 56.25vw;   /* ratio 16/9 basé sur la largeur */
+      height: 56.25vw;
       min-height: 100vh;
-      min-width: 177.78vh; /* ratio 16/9 basé sur la hauteur */
+      min-width: 177.78vh;
       border: none;
+    }
+    /* fallback image sur mobile */
+    .hero-yt-fallback {
+      display: none;
+      position: absolute;
+      inset: 0;
+      background-image: url('https://img.youtube.com/vi/wTJV9FzwmVE/maxresdefault.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+    @media (max-width: 768px) {
+      .hero-yt iframe    { display: none; }
+      .hero-yt-fallback  { display: block; }
     }
     /* overlay sombre pour lisibilité du texte */
     .hero-overlay {
@@ -935,6 +947,7 @@
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen>
     </iframe>
+    <div class="hero-yt-fallback"></div>
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-grid-lines"></div>
