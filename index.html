@@ -291,19 +291,19 @@
       display: none;
       position: absolute;
       inset: 0;
-      width: 100%;
-      height: 100%;
       background-image: url('https://img.youtube.com/vi/wTJV9FzwmVE/maxresdefault.jpg');
       background-size: cover;
-      background-position: center center;
-      overflow: hidden;
+      background-position: center;
     }
     @media (max-width: 768px) {
-      .hero-yt          { overflow: hidden; }
-      .hero-yt iframe   { display: none; }
-      .hero-yt-fallback { display: block; }
-      .hero-display     { font-size: clamp(2.4rem, 11vw, 4rem); }
-      .hero-scroll-hint { display: none; }
+      .hero-yt iframe        { display: none; }
+      .hero-yt-fallback      { display: block; }
+      .hero-display          { font-size: clamp(2.2rem, 10vw, 3.5rem); }
+      .hero-bottom           { flex-direction: column; align-items: flex-start; gap: 24px; }
+      .hero-desc             { max-width: 100%; }
+      .hero-actions          { width: 100%; flex-direction: column; align-items: stretch; }
+      .hero-actions a        { text-align: center; justify-content: center; }
+      .hero-scroll-hint      { display: none; }
     }
     /* overlay sombre pour lisibilité du texte */
     .hero-overlay {
@@ -950,8 +950,10 @@
   <!-- vidéo plein écran -->
   <div class="hero-yt">
     <iframe
-      src="https://www.youtube.com/embed/wTJV9FzwmVE?si=xAwO0aMxLEWGlEUV&autoplay=1&mute=1&loop=1&playlist=wTJV9FzwmVE&controls=0&modestbranding=1&rel=0&showinfo=0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      src="https://www.youtube.com/embed/wTJV9FzwmVE?autoplay=1&mute=1&loop=1&playlist=wTJV9FzwmVE&controls=0&rel=0"
+      title="Drone Vendée"
+      frameborder="0"
+      allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen>
     </iframe>
     <div class="hero-yt-fallback"></div>
