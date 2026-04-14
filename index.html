@@ -307,6 +307,21 @@
       background-size: 80px 80px;
       mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
     }
+    /* ── hero text entrance ── */
+    @keyframes heroIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-eyebrow,
+    .hero-display,
+    .hero-bottom {
+      opacity: 0;
+      animation: heroIn 0.9s cubic-bezier(.4,0,.2,1) forwards;
+    }
+    .hero-eyebrow  { animation-delay: 2s; }
+    .hero-display  { animation-delay: 2.6s; }
+    .hero-bottom   { animation-delay: 3.3s; }
+
     .hero-eyebrow {
       font-family: var(--mono);
       font-size: 0.7rem;
