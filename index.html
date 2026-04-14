@@ -292,19 +292,16 @@
       50% { opacity: 0.5; transform: scale(0.7); }
     }
     .hero-title {
-      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-size: clamp(2.6rem, 5.5vw, 4.5rem);
       font-weight: 700;
       color: var(--white);
-      line-height: 1.2;
+      line-height: 1.15;
       margin-bottom: 1.5rem;
     }
     .hero-title .accent { color: var(--accent); }
     .hero-title .line2 {
       display: block;
-      background: linear-gradient(135deg, #00C8FF 0%, #FFB400 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--accent);
     }
     .hero-desc {
       font-size: 1.1rem;
@@ -710,7 +707,7 @@
       .cta-inner { flex-direction: column; text-align: center; }
       .footer-grid { grid-template-columns: 1fr; gap: 32px; }
       .footer-bottom { flex-direction: column; text-align: center; }
-      .hero-title { font-size: 1.9rem; }
+      .hero-title { font-size: 2.2rem; }
     }
     @media (max-width: 480px) {
       .grid-3 { grid-template-columns: 1fr; }
