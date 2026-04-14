@@ -286,47 +286,30 @@
       min-width: 177.78vh;
       border: none;
     }
-    /* thumbnail + play button */
-    .hero-yt-thumb {
-      position: absolute;
-      inset: 0;
-      cursor: pointer;
-    }
-    .hero-yt-thumb img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-    .hero-yt-play {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .hero-yt-play-btn {
-      width: 72px; height: 72px;
-      border-radius: 50%;
-      background: var(--accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 0 0 rgba(255,77,31,0.5);
-      animation: pulse-ring 2s ease-out infinite;
-      transition: transform var(--t);
-    }
-    .hero-yt-thumb:hover .hero-yt-play-btn { transform: scale(1.1); }
-    @keyframes pulse-ring {
-      0%   { box-shadow: 0 0 0 0 rgba(255,77,31,0.5); }
-      70%  { box-shadow: 0 0 0 20px rgba(255,77,31,0); }
-      100% { box-shadow: 0 0 0 0 rgba(255,77,31,0); }
-    }
-    /* iframe injectée dynamiquement */
+    /* iframe background */
     .hero-yt iframe {
       position: absolute;
-      inset: 0;
-      width: 100%; height: 100%;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100vw;
+      height: 56.25vw;
+      min-height: 100vh;
+      min-width: 177.78vh;
       border: none;
+      pointer-events: none;
+    }
+    /* fallback mobile */
+    .hero-yt-fallback {
+      display: none;
+      position: absolute;
+      inset: 0;
+      background-image: url('https://img.youtube.com/vi/wTJV9FzwmVE/maxresdefault.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+    @media (max-width: 768px) {
+      .hero-yt iframe   { display: none; }
+      .hero-yt-fallback { display: block; }
     }
     @media (max-width: 768px) {
       .hero-display     { font-size: clamp(2.2rem, 10vw, 3.5rem); }
@@ -369,9 +352,9 @@
       opacity: 0;
       animation: heroIn 0.9s cubic-bezier(.4,0,.2,1) forwards;
     }
-    .hero-eyebrow  { animation-delay: 2s; }
-    .hero-display  { animation-delay: 2.6s; }
-    .hero-bottom   { animation-delay: 3.3s; }
+    .hero-eyebrow  { animation-delay: 10s; }
+    .hero-display  { animation-delay: 10.6s; }
+    .hero-bottom   { animation-delay: 11.3s; }
 
     .hero-eyebrow {
       font-family: var(--mono);
@@ -979,16 +962,13 @@
 ═══════════════════════════════════════ -->
 <section id="hero">
   <!-- vidéo plein écran -->
-  <div class="hero-yt" id="heroYt">
-    <!-- thumbnail cliquable — remplacé par iframe au clic -->
-    <div class="hero-yt-thumb" id="heroThumb" onclick="playHeroVideo()">
-      <img src="https://img.youtube.com/vi/wTJV9FzwmVE/maxresdefault.jpg" alt="Drone Vendée">
-      <div class="hero-yt-play">
-        <div class="hero-yt-play-btn">
-          <svg viewBox="0 0 24 24" fill="white" width="28" height="28"><path d="M8 5v14l11-7z"/></svg>
-        </div>
-      </div>
-    </div>
+  <div class="hero-yt">
+    <iframe
+      src="https://www.youtube.com/embed/wTJV9FzwmVE?autoplay=1&mute=1&loop=1&playlist=wTJV9FzwmVE&controls=0&rel=0&playsinline=1"
+      allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+    <div class="hero-yt-fallback"></div>
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-grid-lines"></div>
@@ -1416,15 +1396,6 @@
 </footer>
 
 <script>
-  // hero video — lecture au clic
-  function playHeroVideo() {
-    const yt = document.getElementById('heroYt');
-    yt.innerHTML =
-      '<iframe src="https://www.youtube.com/embed/wTJV9FzwmVE?autoplay=1&mute=1&loop=1&playlist=wTJV9FzwmVE&controls=1&rel=0&playsinline=1"' +
-      ' allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"' +
-      ' allowfullscreen></iframe>';
-  }
-
   // theme toggle
   const html = document.documentElement;
   const stored = localStorage.getItem('theme');
