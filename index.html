@@ -279,10 +279,11 @@
       position: absolute;
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      width: calc(100vh * 16 / 9);
-      height: calc(100vw * 9 / 16);
-      min-width: 100%;
-      min-height: 100%;
+      /* couvre toujours l'écran quelle que soit l'orientation */
+      width: 100vw;
+      height: 56.25vw;   /* ratio 16/9 basé sur la largeur */
+      min-height: 100vh;
+      min-width: 177.78vh; /* ratio 16/9 basé sur la hauteur */
       border: none;
     }
     /* overlay sombre pour lisibilité du texte */
