@@ -158,7 +158,7 @@
       font-size: 0.7rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: var(--white);
       transition: color var(--t);
       display: flex;
       align-items: center;
@@ -166,7 +166,7 @@
       cursor: pointer;
     }
     .nav-links > li > a:hover,
-    .nav-links > li > .nav-drop-trigger:hover { color: var(--white); }
+    .nav-links > li > .nav-drop-trigger:hover { color: var(--accent); }
     .nav-links > li > a svg,
     .nav-links > li > .nav-drop-trigger svg { transition: transform var(--t); }
     /* theme toggle */
@@ -193,14 +193,15 @@
     .nav-drop:hover .nav-drop-trigger svg { transform: rotate(180deg); }
     .nav-drop-menu {
       position: absolute;
-      top: calc(100% + 20px);
+      top: 100%;
       left: 50%;
-      transform: translateX(-50%) translateY(-8px);
+      transform: translateX(-50%) translateY(-4px);
       min-width: 230px;
       background: #111;
       border: 1px solid var(--border);
       border-radius: var(--r);
-      padding: 8px;
+      padding: 16px 8px 8px; /* padding-top comble le gap sans le créer */
+      margin-top: 0;
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
