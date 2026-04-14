@@ -298,22 +298,32 @@
       border: none;
       pointer-events: none;
     }
-    /* fallback mobile */
+    /* fallback — toujours présent comme fond de sécurité */
     .hero-yt-fallback {
-      display: none;
       position: absolute;
       inset: 0;
       background-image: url('https://img.youtube.com/vi/wTJV9FzwmVE/maxresdefault.jpg');
       background-size: cover;
       background-position: center;
+      z-index: 0;
     }
-    @media (max-width: 768px) {
-      .hero-yt iframe    { display: none; }
-      .hero-yt-fallback  { display: block; }
-      /* pas de vidéo sur mobile → textes apparaissent immédiatement */
-      .hero-eyebrow      { animation-delay: 0.3s; }
-      .hero-display      { animation-delay: 0.7s; }
-      .hero-bottom       { animation-delay: 1.1s; }
+    /* portrait mobile : on cache l'iframe, le fallback reste visible */
+    @media (orientation: portrait) and (max-width: 900px) {
+      .hero-yt iframe {
+        display: none;
+      }
+      .hero-eyebrow { animation-delay: 0.3s; }
+      .hero-display { animation-delay: 0.7s; }
+      .hero-bottom  { animation-delay: 1.1s; }
+    }
+    /* paysage mobile : iframe visible, sizing adapté */
+    @media (orientation: landscape) and (max-height: 600px) {
+      .hero-yt iframe {
+        width: 177.78vh;
+        height: 100vh;
+        min-width: unset;
+        min-height: unset;
+      }
     }
     @media (max-width: 768px) {
       .hero-display     { font-size: clamp(2.2rem, 10vw, 3.5rem); }
