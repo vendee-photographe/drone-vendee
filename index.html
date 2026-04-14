@@ -267,37 +267,43 @@
       position: relative;
       overflow: hidden;
     }
-    .hero-orb {
+    /* ── vidéo background YouTube ── */
+    .hero-yt {
       position: absolute;
-      top: -15%;
-      right: -10%;
-      width: 700px;
-      height: 700px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,77,31,0.18) 0%, rgba(255,77,31,0.05) 50%, transparent 75%);
+      inset: 0;
       pointer-events: none;
-      animation: orb-float 8s ease-in-out infinite;
+      overflow: hidden;
+      z-index: 0;
     }
-    @keyframes orb-float {
-      0%,100% { transform: translate(0,0) scale(1); }
-      50% { transform: translate(-30px, 30px) scale(1.06); }
-    }
-    .hero-orb2 {
+    .hero-yt iframe {
       position: absolute;
-      bottom: 0;
-      left: -15%;
-      width: 500px;
-      height: 500px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,77,31,0.07) 0%, transparent 65%);
-      pointer-events: none;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(100vh * 16 / 9);
+      height: calc(100vw * 9 / 16);
+      min-width: 100%;
+      min-height: 100%;
+      border: none;
+    }
+    /* overlay sombre pour lisibilité du texte */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(4,4,4,0.55) 0%,
+        rgba(4,4,4,0.3) 40%,
+        rgba(4,4,4,0.75) 100%
+      );
+      z-index: 1;
     }
     .hero-grid-lines {
       position: absolute;
       inset: 0;
+      z-index: 2;
       background-image:
-        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
       background-size: 80px 80px;
       mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
     }
@@ -906,10 +912,17 @@
      HERO
 ═══════════════════════════════════════ -->
 <section id="hero">
-  <div class="hero-orb"></div>
-  <div class="hero-orb2"></div>
+  <!-- vidéo plein écran -->
+  <div class="hero-yt">
+    <iframe
+      src="https://www.youtube.com/embed/wTJV9FzwmVE?si=xAwO0aMxLEWGlEUV&autoplay=1&mute=1&loop=1&playlist=wTJV9FzwmVE&controls=0&modestbranding=1&rel=0&showinfo=0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <div class="hero-overlay"></div>
   <div class="hero-grid-lines"></div>
-  <div class="wrap">
+  <div class="wrap" style="position:relative;z-index:3">
     <p class="hero-eyebrow">Ideclik Drone Agency &mdash; Vendée 85 &mdash; Certifié DGAC</p>
     <h1 class="hero-display">
       <span class="outline">PRENEZ</span><br>
@@ -931,7 +944,7 @@
       </div>
     </div>
   </div>
-  <div class="hero-scroll-hint">Scroll</div>
+  <div class="hero-scroll-hint" style="z-index:3">Scroll</div>
 </section>
 
 <!-- ═══════════════════════════════════════
@@ -974,21 +987,11 @@
       <h2 style="font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;letter-spacing:-0.02em;line-height:1.2">Ce que nous réalisons<br><span style="color:var(--muted);font-weight:400">depuis les airs.</span></h2>
     </div>
     <div class="bento">
-      <div class="bento-card col-7 row-2 bento-featured reveal" style="justify-content:flex-start;gap:20px">
+      <div class="bento-card col-7 row-2 bento-featured reveal">
         <div class="card-num">01</div>
-        <div style="position:relative;width:100%;border-radius:10px;overflow:hidden;aspect-ratio:16/9;flex-shrink:0">
-          <iframe
-            src="https://www.youtube.com/embed/wTJV9FzwmVE?si=xAwO0aMxLEWGlEUV&autoplay=1&mute=1&loop=1&playlist=wTJV9FzwmVE"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-            style="position:absolute;inset:0;width:100%;height:100%;border:none">
-          </iframe>
-        </div>
+        <div class="card-icon">🎬</div>
         <h3>Vidéo & Photo aérienne</h3>
-        <p>Clips institutionnels, reportages d'entreprise et photographies aériennes 4K.</p>
+        <p>Clips institutionnels, reportages d'entreprise et photographies aériennes 4K. Des plans impressionnants qui transforment votre communication.</p>
         <a href="drone-video-vendee.html" class="card-link">Découvrir →</a>
       </div>
       <div class="bento-card col-5 reveal d1">
