@@ -27,6 +27,26 @@
       --mono:     'JetBrains Mono', monospace;
       --sans:     'Space Grotesk', sans-serif;
     }
+    html.light {
+      --bg:       #F8F7F4;
+      --bg2:      #EFEFEB;
+      --white:    #111111;
+      --muted:    #888;
+      --border:   rgba(0,0,0,0.08);
+      --card:     rgba(0,0,0,0.03);
+    }
+    html.light body::before { opacity: 0.015; }
+    html.light .hero-grid-lines {
+      background-image:
+        linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+    }
+    html.light #nav.scrolled { background: rgba(248,247,244,0.92); }
+    html.light .nav-drop-menu { background: #fff; }
+    html.light .process-item,
+    html.light .value-item { background: var(--bg); }
+    html.light .drone-card-body { background: var(--bg2); }
+    html.light #footer { background: #E8E7E4; }
 
     /* ══════════════════════════════════════
        RESET
@@ -148,6 +168,25 @@
     .nav-links > li > .nav-drop-trigger:hover { color: var(--white); }
     .nav-links > li > a svg,
     .nav-links > li > .nav-drop-trigger svg { transition: transform var(--t); }
+    /* theme toggle */
+    .theme-toggle {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: border-color var(--t), transform var(--t);
+      flex-shrink: 0;
+    }
+    .theme-toggle:hover { border-color: var(--accent); transform: rotate(20deg) scale(1.05); }
+    .theme-icon-light { display: none; }
+    html.light .theme-icon-dark  { display: none; }
+    html.light .theme-icon-light { display: block; }
+
     /* dropdown */
     .nav-drop { position: relative; }
     .nav-drop:hover .nav-drop-trigger svg { transform: rotate(180deg); }
@@ -853,6 +892,10 @@
       <li><a href="drone-video-aerienne-vendee.html">Références</a></li>
       <li><a href="mailto:contact@drone-vendee.com" class="nav-cta-btn">Contact</a></li>
     </ul>
+    <button class="theme-toggle" id="themeToggle" aria-label="Basculer thème clair/foncé" title="Thème clair / foncé">
+      <span class="theme-icon-dark">☀️</span>
+      <span class="theme-icon-light">🌙</span>
+    </button>
     <button class="burger" id="burger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -1290,6 +1333,15 @@
 </footer>
 
 <script>
+  // theme toggle
+  const html = document.documentElement;
+  const stored = localStorage.getItem('theme');
+  if (stored === 'light') html.classList.add('light');
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    html.classList.toggle('light');
+    localStorage.setItem('theme', html.classList.contains('light') ? 'light' : 'dark');
+  });
+
   // scroll nav
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40), {passive:true});
