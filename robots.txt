@@ -1,8 +1,0 @@
-User-agent: *
-Allow: /addons/
-Disallow: /cache/
-Allow: /css/
-Disallow: /sliders
-Allow: /js/
-Disallow: /php_helpers/
-Disallow: /pwd/
